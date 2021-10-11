@@ -94,8 +94,7 @@ export class ListComponent implements OnInit {
   //#region 'click' events
   // "Add Member" button click
   addMember() {
-    let member = { firstname: "", lastname: "", salary: "" };
-    this.router.navigateByUrl('/add', { state: member }); //OR this.router.navigateByUrl('/add');
+    this.router.navigate(['/add']); //OR this.router.navigateByUrl('/add');
   }
 
   // "Delete" button click
