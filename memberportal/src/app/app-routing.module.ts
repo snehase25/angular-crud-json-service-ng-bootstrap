@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddComponent } from './Member/add/add.component';
-import { DetailComponent } from './Member/detail/detail.component';
-import { EditComponent } from './Member/edit/edit.component';
-import { ListComponent } from './Member/list/list.component';
+import { AddComponent } from './member/add/add.component';
+import { DetailComponent } from './member/detail/detail.component';
+import { EditComponent } from './member/edit/edit.component';
+import { ListComponent } from './member/list/list.component';
 
 const routes: Routes = [
   {path:'', redirectTo: '/list', pathMatch:'full'},
