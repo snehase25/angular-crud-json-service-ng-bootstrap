@@ -1,5 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Member } from '../shared/member.model';
+import { MemberService } from '../shared/member.service';
 
 @Component({
   selector: 'app-detail',
@@ -7,18 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail.component.css'],
 })
 export class DetailComponent implements OnInit {
-  member: any;
-  constructor(private location: Location) { }
+  member!: Member;
+  index!: number;
+  constructor(private location: Location, private memberService: MemberService) {
+  }
 
   ngOnInit(): void {
-    // Set the page name in session storage
-    sessionStorage.setItem('page','detail');
-
-    // Set the member details sent from list component via state
-    this.member = history.state;
+    this.index = history.state.indexOfElement;
+    // Get the member to update
+    this.getMember();
   }
 
   goBack() {
     this.location.back();
+  }
+
+  // Get the member to update
+  private getMember() {
+    this.memberService.getMember(this.index)
+      .subscribe(member => this.member = member);
   }
 }

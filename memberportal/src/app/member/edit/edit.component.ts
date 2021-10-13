@@ -1,6 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Member } from '../shared/member.model';
+import { MemberService } from '../shared/member.service';
 
 @Component({
   selector: 'app-edit',
@@ -8,26 +10,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  memberInfo: any;
-  constructor(private location: Location, private router: Router) { }
+  member!: Member;
+  private index!: number;
+  private isSuccess: boolean = false;
+
+  constructor(private location: Location, private router: Router, private memberService: MemberService) {
+
+  }
 
   ngOnInit(): void {
-    // Set the member details sent from list component via state
-    this.memberInfo = history.state;
+    // Get the index of the member to be updated
+    this.index = history.state.indexOfElement;
+    // Get the member to update
+    this.getMember();
   }
 
   // "Save" button click
   updateMember() {
-    // Set the page name in session storage
-    sessionStorage.setItem('page','edit');
-    // Navigate to list component to update the member in json members array
-    this.router.navigateByUrl('/list', { state: this.memberInfo });
+    this.memberService.updateMember(this.index, this.member)
+      .subscribe(isSuccess => this.isSuccess = isSuccess);
+    this.location.back();
   }
 
   // "Back" button click
   goBack() {
-    // Set the page name in session storage
-    sessionStorage.setItem('page','');
     this.location.back();
+  }
+
+  // Get the member to update
+  private getMember() {
+    this.memberService.getMember(this.index)
+      .subscribe(member => this.member = member);
   }
 }

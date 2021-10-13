@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MemberService } from '../shared/member.service';
 
 @Component({
   selector: 'app-add',
@@ -9,24 +10,23 @@ import { Router } from '@angular/router';
 })
 export class AddComponent implements OnInit {
   member: any = {};
-  constructor(private router: Router, private location: Location) { }
+  isSuccess: boolean = false;
+
+  constructor(private location: Location, private memberService: MemberService) { }
 
   ngOnInit(): void {
-  
+
   }
 
   // "Save" button click
   addMember() {
-    // Set the page name in session storage
-    sessionStorage.setItem('page','add');
-    // Navigate to list component to add the member in json members array
-    this.router.navigateByUrl('/list', { state: this.member });
+    this.memberService.addMember(this.member)
+      .subscribe(isSuccess => this.isSuccess = this.isSuccess);
+    this.location.back();
   }
 
   // "Back" button click
   goBack() {
-    // Set the page name in session storage
-    sessionStorage.setItem('page','');
     this.location.back();
   }
 }

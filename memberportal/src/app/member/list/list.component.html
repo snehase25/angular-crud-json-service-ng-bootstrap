@@ -1,7 +1,6 @@
 <h1>Member List :</h1>
 <button type="button" (click)="addMember();">Add Member</button>
 <br><br>
-<h4>{{displayMessage}}</h4>
 <table>
     <tr>
         <th>First Name</th>
@@ -11,12 +10,12 @@
         <th>Delete</th>
         <th>Detail</th>
     </tr>
-    <tr *ngFor="let member of membersMock;let indexOfElement = index;">
+    <tr *ngFor="let member of members;let indexOfElement = index;">
         <td>{{member.firstname}}</td>
         <td>{{member.lastname}}</td>
         <td>{{member.salary}}</td>
-        <td><a routerLink="/edit" [state]="{member:member,index:indexOfElement}">Edit</a></td>
-        <td><a routerLink="#" (click)="deleteMember(member);">Delete</a></td>
-        <td><a routerLink="/detail" [state]=member>Detail</a></td>
+        <td><a routerLink="/edit" [state]={indexOfElement}>Edit</a></td>
+        <td><a routerLink="#" (click)="deleteMember(indexOfElement);">Delete</a></td>
+        <td><a routerLink="/detail" [state]={indexOfElement}>Detail</a></td>
     </tr>
 </table>
