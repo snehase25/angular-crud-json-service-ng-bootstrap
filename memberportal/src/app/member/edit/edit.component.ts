@@ -10,7 +10,7 @@ import { MemberService } from '../shared/member.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  member!: Member;
+  public member!: Member; // member model
   private index!: number;
   private isSuccess: boolean = false;
 
@@ -20,25 +20,25 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     // Get the index of the member to be updated
-    this.index = history.state.indexOfElement;
+    this.index = history.state.index;
     // Get the member to update
     this.getMember();
   }
 
   // "Save" button click
-  updateMember() {
+  public updateMember(): void {
     this.memberService.updateMember(this.index, this.member)
       .subscribe(isSuccess => this.isSuccess = isSuccess);
     this.location.back();
   }
 
   // "Back" button click
-  goBack() {
+  public goBack(): void {
     this.location.back();
   }
 
   // Get the member to update
-  private getMember() {
+  private getMember(): void {
     this.memberService.getMember(this.index)
       .subscribe(member => this.member = member);
   }

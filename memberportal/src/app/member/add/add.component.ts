@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Member } from '../shared/member.model';
 import { MemberService } from '../shared/member.service';
 
 @Component({
@@ -9,8 +10,8 @@ import { MemberService } from '../shared/member.service';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-  member: any = {};
-  isSuccess: boolean = false;
+  public member: Member = {}; // member model
+  private isSuccess: boolean = false;
 
   constructor(private location: Location, private memberService: MemberService) { }
 
@@ -19,14 +20,14 @@ export class AddComponent implements OnInit {
   }
 
   // "Save" button click
-  addMember() {
+  public addMember(): void {
     this.memberService.addMember(this.member)
       .subscribe(isSuccess => this.isSuccess = this.isSuccess);
     this.location.back();
   }
 
   // "Back" button click
-  goBack() {
+  public goBack(): void {
     this.location.back();
   }
 }

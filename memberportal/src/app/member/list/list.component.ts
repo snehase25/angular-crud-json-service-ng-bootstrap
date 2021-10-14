@@ -10,7 +10,7 @@ import { MemberService } from '../shared/member.service';
 })
 export class ListComponent implements OnInit {
 
-  public members!: Member[]; // Stores member details
+  public members!: Member[]; // member model
   private isSuccess: boolean = false;
 
   constructor(private router: Router, private memberService: MemberService) { this.getAllMembers(); }
@@ -21,12 +21,12 @@ export class ListComponent implements OnInit {
   }
 
   // "Add Member" button click
-  addMember(): void {
+  public addMember(): void {
     this.router.navigate(['/add']); //OR this.router.navigateByUrl('/add');
   }
 
   // "Delete" button click
-  deleteMember(index: number): void {
+  public deleteMember(index: number): void {
     if (confirm('Are you sure to delete ?')) {
       this.memberService.deleteMember(index)
         .subscribe(isSucess => isSucess = this.isSuccess);

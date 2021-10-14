@@ -9,23 +9,24 @@ import { MemberService } from '../shared/member.service';
   styleUrls: ['./detail.component.css'],
 })
 export class DetailComponent implements OnInit {
-  member!: Member;
-  index!: number;
+  public member!: Member; // member model
+  private index!: number;
+
   constructor(private location: Location, private memberService: MemberService) {
   }
 
   ngOnInit(): void {
-    this.index = history.state.indexOfElement;
+    this.index = history.state.index;
     // Get the member to update
     this.getMember();
   }
 
-  goBack() {
+  public goBack(): void {
     this.location.back();
   }
 
   // Get the member to update
-  private getMember() {
+  private getMember(): void {
     this.memberService.getMember(this.index)
       .subscribe(member => this.member = member);
   }
