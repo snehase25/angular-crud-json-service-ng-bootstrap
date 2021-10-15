@@ -1,6 +1,6 @@
-import { InvokeMethodExpr } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { MessageService } from 'src/app/shared/services/message.service';
 import { Member } from './member.model';
 import { MEMBERS } from './mock-members';
 
@@ -9,7 +9,7 @@ import { MEMBERS } from './mock-members';
 })
 export class MemberService {
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   // get all members
   getAllMembers(): Observable<Member[]> {
@@ -29,9 +29,12 @@ export class MemberService {
     try {
       MEMBERS.push(member);
       status = true;
+      this.messageService.add("Member added sucessfully!");
     }
     catch (e) {
       status = false;
+      console.log(e);
+      this.messageService.add("Something went wrong!");
     }
     return of(status);
   }
@@ -44,9 +47,12 @@ export class MemberService {
       MEMBERS[index].lastname = member.lastname;
       MEMBERS[index].salary = member.salary;
       status = true;
+      this.messageService.add("Member updated sucessfully!");
     }
     catch (e) {
       status = false;
+      console.log(e);
+      this.messageService.add("Something went wrong!");
     }
     return of(status);
   }
@@ -57,9 +63,12 @@ export class MemberService {
     try {
       MEMBERS.splice(index,1);
       status = true;
+      this.messageService.add("Member deleted sucessfully!");
     }
     catch (e) {
       status = false;
+      console.log(e);
+      this.messageService.add("Something went wrong!");
     }
     return of(status);
   }

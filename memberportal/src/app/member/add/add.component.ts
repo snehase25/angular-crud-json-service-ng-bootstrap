@@ -1,6 +1,5 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Member } from '../shared/member.model';
 import { MemberService } from '../shared/member.service';
 
