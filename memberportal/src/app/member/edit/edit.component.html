@@ -1,9 +1,28 @@
-<h1>Edit Member :</h1>
-<label>First Name :</label>
-<input type="text" [(ngModel)]="member.firstname" /><br>
-<label>Last Name :</label>
-<input type="text" [(ngModel)]="member.lastname" /><br>
-<label>Salary :</label>
-<input type="text" [(ngModel)]="member.salary" /><br><br>
-<button type="button" (click)="updateMember();">Save</button>
-<button type="button" (click)="goBack();">Cancel</button>
+<form #editMemberForm="ngForm">
+    <h1>Edit Member :</h1>
+    <label>First Name :</label>
+    <input type="text" [(ngModel)]="member.firstName" required minlength="4" name="firstName"
+        #firstName="ngModel" /><br>
+    <div *ngIf="firstName.dirty || firstName.touched">
+        <div *ngIf="firstName.errors?.required">
+            First name is required
+        </div>
+        <div *ngIf="firstName.errors?.minlength">
+            First name must be atleast 4 characters long
+        </div>
+    </div>
+    <label>Last Name :</label>
+    <input type="text" [(ngModel)]="member.lastName" required minlength="4" name="lastName" #lastName="ngModel" /><br>
+    <div *ngIf="lastName.dirty || lastName.touched">
+        <div *ngIf="lastName.errors?.required">
+            Last name is required
+        </div>
+        <div *ngIf="lastName.errors?.minlength">
+            Last name must be atleast 4 characters long
+        </div>
+    </div>
+    <label>Salary :</label>
+    <input type="text" [(ngModel)]="member.salary" name="salary" /><br><br>
+    <button type="submit" [disabled]="editMemberForm.invalid" (click)="updateMember();">Save</button>
+    <button type="button" (click)="goBack();">Cancel</button>
+</form>

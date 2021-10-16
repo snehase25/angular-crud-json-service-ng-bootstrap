@@ -11,8 +11,8 @@
         <th>Detail</th>
     </tr>
     <tr *ngFor="let member of members;let indexOfElement = index;">
-        <td>{{member.firstname}}</td>
-        <td>{{member.lastname}}</td>
+        <td>{{member.firstName}}</td>
+        <td>{{member.lastName}}</td>
         <td>{{member.salary}}</td>
         <td><a routerLink="/edit" [state]="{index : indexOfElement}">Edit</a></td>
         <td><a routerLink="/list" (click)="deleteMember(indexOfElement);">Delete</a></td>

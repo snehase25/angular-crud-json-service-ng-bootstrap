@@ -43,8 +43,8 @@ export class MemberService {
   updateMember(index: number, member: Member): Observable<boolean> {
     let status: boolean;
     try {
-      MEMBERS[index].firstname = member.firstname;
-      MEMBERS[index].lastname = member.lastname;
+      MEMBERS[index].firstName = member.firstName;
+      MEMBERS[index].lastName = member.lastName;
       MEMBERS[index].salary = member.salary;
       status = true;
       this.messageService.add("Member updated sucessfully!");
