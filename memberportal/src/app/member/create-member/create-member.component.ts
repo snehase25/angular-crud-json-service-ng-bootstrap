@@ -4,23 +4,22 @@ import { Member } from '../shared/member.model';
 import { MemberService } from '../shared/member.service';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+  selector: 'app-create-member',
+  templateUrl: './create-member.component.html',
+  styleUrls: ['./create-member.component.css']
 })
-export class AddComponent implements OnInit {
+export class CreateMemberComponent implements OnInit {
   public member: Member = {}; // member model
   private isSuccess: boolean = false;
 
   constructor(private location: Location, private memberService: MemberService) { }
 
   ngOnInit(): void {
-
   }
 
   // "Save" button click
-  public addMember(): void {
-    this.memberService.addMember(this.member)
+  public createMember(): void {
+    this.memberService.createMember(this.member)
       .subscribe(isSuccess => this.isSuccess = this.isSuccess);
     this.location.back();
   }
@@ -29,4 +28,5 @@ export class AddComponent implements OnInit {
   public goBack(): void {
     this.location.back();
   }
+
 }

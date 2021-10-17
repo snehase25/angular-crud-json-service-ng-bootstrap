@@ -4,16 +4,15 @@ import { Member } from '../shared/member.model';
 import { MemberService } from '../shared/member.service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  selector: 'app-list-member',
+  templateUrl: './list-member.component.html',
+  styleUrls: ['./list-member.component.css']
 })
-export class ListComponent implements OnInit {
-
+export class ListMemberComponent implements OnInit {
   public members!: Member[]; // member model
   private isSuccess: boolean = false;
 
-  constructor(private router: Router, private memberService: MemberService) { this.getAllMembers(); }
+  constructor(private router: Router, private memberService: MemberService) { }
 
   ngOnInit(): void {
     // Get members data
@@ -21,8 +20,8 @@ export class ListComponent implements OnInit {
   }
 
   // "Add Member" button click
-  public addMember(): void {
-    this.router.navigate(['/add']); //OR this.router.navigateByUrl('/add');
+  public createMember(): void {
+    this.router.navigate(['/create']); //OR this.router.navigateByUrl('/add');
   }
 
   // "Delete" button click
@@ -38,4 +37,5 @@ export class ListComponent implements OnInit {
     this.memberService.getAllMembers()
       .subscribe(members => this.members = members);
   }
+
 }

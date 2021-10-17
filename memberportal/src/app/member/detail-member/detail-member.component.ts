@@ -4,16 +4,15 @@ import { Member } from '../shared/member.model';
 import { MemberService } from '../shared/member.service';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css'],
+  selector: 'app-detail-member',
+  templateUrl: './detail-member.component.html',
+  styleUrls: ['./detail-member.component.css']
 })
-export class DetailComponent implements OnInit {
+export class DetailMemberComponent implements OnInit {
   public member!: Member; // member model
   private index!: number;
 
-  constructor(private location: Location, private memberService: MemberService) {
-  }
+  constructor(private location: Location, private memberService: MemberService) { }
 
   ngOnInit(): void {
     this.index = history.state.index;

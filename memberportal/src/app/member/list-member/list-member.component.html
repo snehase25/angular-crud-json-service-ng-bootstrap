@@ -1,5 +1,5 @@
 <h1>Member List :</h1>
-<button type="button" (click)="addMember();">Add Member</button>
+<button type="button" (click)="createMember();">Add Member</button>
 <app-message></app-message>
 <table>
     <tr>
@@ -14,7 +14,7 @@
         <td>{{member.firstName}}</td>
         <td>{{member.lastName}}</td>
         <td>{{member.salary}}</td>
-        <td><a routerLink="/edit" [state]="{index : indexOfElement}">Edit</a></td>
+        <td><a routerLink="/update" [state]="{index : indexOfElement}">Edit</a></td>
         <td><a routerLink="/list" (click)="deleteMember(indexOfElement);">Delete</a></td>
         <td><a routerLink="/detail" [state]="{index : indexOfElement}">Detail</a></td>
     </tr>

@@ -5,18 +5,16 @@ import { Member } from '../shared/member.model';
 import { MemberService } from '../shared/member.service';
 
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  selector: 'app-update-member',
+  templateUrl: './update-member.component.html',
+  styleUrls: ['./update-member.component.css']
 })
-export class EditComponent implements OnInit {
+export class UpdateMemberComponent implements OnInit {
   public member!: Member; // member model
   private index!: number;
   private isSuccess: boolean = false;
 
-  constructor(private location: Location, private router: Router, private memberService: MemberService) {
-
-  }
+  constructor(private location: Location, private router: Router, private memberService: MemberService) { }
 
   ngOnInit(): void {
     // Get the index of the member to be updated

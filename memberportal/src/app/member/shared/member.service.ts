@@ -24,7 +24,7 @@ export class MemberService {
   }
 
   // add new member
-  addMember(member: Member): Observable<boolean> {
+  createMember(member: Member): Observable<boolean> {
     let status: boolean = false;
     try {
       MEMBERS.push(member);
