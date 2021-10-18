@@ -27,14 +27,14 @@ export class ListMemberComponent implements OnInit {
   // "Delete" button click
   public deleteMember(index: number): void {
     if (confirm('Are you sure to delete ?')) {
-      this.memberService.deleteMember(index)
+      this.memberService.delete(index)
         .subscribe(isSucess => isSucess = this.isSuccess);
     }
   }
 
   //Gets all the members
   private getAllMembers(): void {
-    this.memberService.getAllMembers()
+    this.memberService.getAll()
       .subscribe(members => this.members = members);
   }
 

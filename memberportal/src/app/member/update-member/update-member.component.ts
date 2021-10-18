@@ -25,7 +25,7 @@ export class UpdateMemberComponent implements OnInit {
 
   // "Save" button click
   public updateMember(): void {
-    this.memberService.updateMember(this.index, this.member)
+    this.memberService.update(this.index, this.member)
       .subscribe(isSuccess => this.isSuccess = isSuccess);
     this.location.back();
   }
@@ -37,7 +37,7 @@ export class UpdateMemberComponent implements OnInit {
 
   // Get the member to update
   private getMember(): void {
-    this.memberService.getMember(this.index)
+    this.memberService.find(this.index)
       .subscribe(member => this.member = member);
   }
 }

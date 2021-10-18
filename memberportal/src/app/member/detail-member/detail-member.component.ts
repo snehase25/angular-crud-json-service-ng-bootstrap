@@ -26,7 +26,7 @@ export class DetailMemberComponent implements OnInit {
 
   // Get the member to update
   private getMember(): void {
-    this.memberService.getMember(this.index)
+    this.memberService.find(this.index)
       .subscribe(member => this.member = member);
   }
 }

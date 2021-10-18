@@ -19,7 +19,7 @@ export class CreateMemberComponent implements OnInit {
 
   // "Save" button click
   public createMember(): void {
-    this.memberService.createMember(this.member)
+    this.memberService.create(this.member)
       .subscribe(isSuccess => this.isSuccess = this.isSuccess);
     this.location.back();
   }
