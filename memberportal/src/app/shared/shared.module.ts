@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MessageComponent } from './components/message/message.component';
-import { AppRoutingModule } from '../app-routing.module';
 
 
 
@@ -10,11 +9,13 @@ import { AppRoutingModule } from '../app-routing.module';
   declarations: [
     MessageComponent
   ],
-  imports: [],
+  imports: [
+    CommonModule,
+    FormsModule
+  ],
   exports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule,
     MessageComponent
   ]
 })

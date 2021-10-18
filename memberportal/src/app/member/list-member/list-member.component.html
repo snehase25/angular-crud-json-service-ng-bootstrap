@@ -14,8 +14,8 @@
         <td>{{member.firstName}}</td>
         <td>{{member.lastName}}</td>
         <td>{{member.salary}}</td>
-        <td><a routerLink="/update" [state]="{index : indexOfElement}">Edit</a></td>
-        <td><a routerLink="/list" (click)="deleteMember(indexOfElement);">Delete</a></td>
-        <td><a routerLink="/detail" [state]="{index : indexOfElement}">Detail</a></td>
+        <td><a routerLink="/member/update" [state]="{index : indexOfElement}">Edit</a></td>
+        <td><a routerLink="/member/list" (click)="deleteMember(indexOfElement);">Delete</a></td>
+        <td><a routerLink="/member/detail" [state]="{index : indexOfElement}">Detail</a></td>
     </tr>
 </table>

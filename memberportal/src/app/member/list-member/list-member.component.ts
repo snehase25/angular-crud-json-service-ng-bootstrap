@@ -21,7 +21,7 @@ export class ListMemberComponent implements OnInit {
 
   // "Add Member" button click
   public createMember(): void {
-    this.router.navigate(['/create']); //OR this.router.navigateByUrl('/add');
+    this.router.navigate(['/member/create']); //OR this.router.navigateByUrl('/add');
   }
 
   // "Delete" button click
