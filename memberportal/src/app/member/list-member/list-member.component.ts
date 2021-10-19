@@ -11,6 +11,7 @@ import { MemberService } from '../shared/member.service';
 export class ListMemberComponent implements OnInit {
   public members!: Member[]; // member model
   private isSuccess: boolean = false;
+  public deleteIndex: number = -1;
 
   constructor(private router: Router, private memberService: MemberService) { }
 
@@ -25,11 +26,15 @@ export class ListMemberComponent implements OnInit {
   }
 
   // "Delete" button click
-  public deleteMember(index: number): void {
-    if (confirm('Are you sure to delete ?')) {
-      this.memberService.delete(index)
-        .subscribe(isSucess => isSucess = this.isSuccess);
-    }
+  public deleteMember(): void {
+    this.memberService.delete(this.deleteIndex)
+      .subscribe(isSucess => isSucess = this.isSuccess);
+      console.log(this.members);
+  }
+
+  // Set index of item to be deleted
+  public setDeleteIndex(index: any): void {
+    this.deleteIndex = index;
   }
 
   //Gets all the members

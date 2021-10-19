@@ -1,28 +1,47 @@
-<form #createMemberForm="ngForm">
-    <h1>Add Member :</h1>
-    <label>First Name : *</label>
-    <input type="text" required minlength="4" [(ngModel)]="member.firstName" #firstName="ngModel"
-        name="firstName" /><br>
-    <div *ngIf="firstName.dirty || firstName.touched">
-        <div *ngIf="firstName.errors?.required">
-            First name is required
-        </div>
-        <div *ngIf="firstName.errors?.minlength">
-            First name must be atleast 4 characters long
-        </div>
+<div class="container shadow p-3 mb-5 bg-body rounded">
+    <div class="row modal-header">
+        <h2>Add New <b>Member</b></h2>
     </div>
-    <label>Last Name : *</label>
-    <input type="text" required minlength="4" [(ngModel)]="member.lastName" #lastName="ngModel" name="lastName" /><br>
-    <div *ngIf="lastName.dirty || lastName.touched">
-        <div *ngIf="lastName.errors?.required">
-            Last name is required
-        </div>
-        <div *ngIf="lastName.errors?.minlength">
-            Last name must be atleast 4 characters long
-        </div>
+    <div>
+        <form #createMemberForm="ngForm">
+            <div class="form-group">
+                <label class="form-label">First Name : </label>
+                <input type="text" required minlength="4" [(ngModel)]="member.firstName" #firstName="ngModel"
+                    name="firstName" class="form-control" />
+                <div *ngIf="lastName.dirty || firstName.touched">
+                    <div *ngIf="firstName.errors?.required" class="alert alert-danger">
+                        First name is required
+                    </div>
+                    <div *ngIf="firstName.errors?.minlength" class="alert alert-danger">
+                        First name must be atleast 4 characters long
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label class="form-label">Last Name : </label>
+                <input type="text" required minlength="4" [(ngModel)]="member.lastName" #lastName="ngModel"
+                    name="lastName" class="form-control" />
+                <div *ngIf="lastName.dirty || lastName.touched">
+                    <div *ngIf="lastName.errors?.required" class="alert alert-danger">
+                        Last name is required
+                    </div>
+                    <div *ngIf="lastName.errors?.minlength" class="alert alert-danger">
+                        Last name must be atleast 4 characters long
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label class="form-label">Salary :</label>
+                <input type="text" [(ngModel)]="member.salary" name="salary" class="form-control" />
+            </div>
+            <br>
+            <div class="form-group">
+                <button type="submit" [disabled]="createMemberForm.invalid" (click)="createMember();"
+                    class="btn btn-success me-2">Save</button>
+                <button type="button" (click)="goBack();" class="btn btn-primary">Cancel</button>
+            </div>
+        </form>
     </div>
-    <label>Salary :</label>
-    <input type="text" [(ngModel)]="member.salary" name="salary" /><br><br>
-    <button type="submit" [disabled]="createMemberForm.invalid" (click)="createMember();">Save</button>
-    <button type="button" (click)="goBack();">Cancel</button>
-</form>
+</div>
