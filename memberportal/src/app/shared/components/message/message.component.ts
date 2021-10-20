@@ -14,6 +14,7 @@ export class MessageComponent implements OnInit {
   constructor(public messageService: MessageService) { }
 
   ngOnInit(): void {
+    // Hide messages after 3 seconds
     setTimeout(() => this.messageAlert.close(), 3000);
   }
 }

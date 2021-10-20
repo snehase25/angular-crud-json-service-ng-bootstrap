@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MessageComponent } from './components/message/message.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -11,7 +12,8 @@ import { MessageComponent } from './components/message/message.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   exports: [
     CommonModule,

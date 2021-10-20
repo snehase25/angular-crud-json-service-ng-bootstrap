@@ -14,21 +14,21 @@ export class MemberService {
   private isSuccess: boolean = true;
   constructor(private messageService: MessageService, private messageConstants: MessageConstants) { }
 
-  // get all members
+  // Get all members
   getAll(): Observable<Member[]> {
     const members = of(MEMBERS);
     return members
       .pipe(catchError(this.errorHandler));
   }
 
-  // get a member from index
+  // Get a member from index
   find(index: number): Observable<Member> {
     const member = MEMBERS[index];
     return of(member)
       .pipe(catchError(this.errorHandler));
   }
 
-  // add new member
+  // Add new member
   create(member: Member): Observable<boolean> {
     MEMBERS.push(member);
     this.setAlertMessage(this.messageConstants.CREATESUCCESS, this.isSuccess);
@@ -36,7 +36,7 @@ export class MemberService {
       .pipe(catchError(this.errorHandler));
   }
 
-  // update member
+  // Update member
   update(index: number, member: Member): Observable<boolean> {
     MEMBERS[index].firstName = member.firstName;
     MEMBERS[index].lastName = member.lastName;
@@ -46,7 +46,7 @@ export class MemberService {
       .pipe(catchError(this.errorHandler));
   }
 
-  // delete member
+  // Delete member
   delete(index: number): Observable<boolean> {
     MEMBERS.splice(index, 1);
     this.setAlertMessage(this.messageConstants.DELETESUCCESS, this.isSuccess);
@@ -54,7 +54,7 @@ export class MemberService {
       .pipe(catchError(this.errorHandler));
   }
 
-  // handles the errors accross all service methods
+  // Handles the errors accross all service methods
   private errorHandler(error: any) {
     let errorMessage = '';
     this.isSuccess = false;
@@ -67,7 +67,7 @@ export class MemberService {
     return throwError(errorMessage);
   }
 
-  // set alert messages to notify user
+  // Set alert messages to notify user
   private setAlertMessage(message: string, isSuccess: boolean) {
     this.messageService.add(message, isSuccess);
   }
