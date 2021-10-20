@@ -5,10 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class MessageService {
   public message: string = "";
+  public isSuccess: boolean = false;
 
   constructor() { }
 
-  public add(message: string): void {
+  public add(message: string, isSuccess: boolean): void {
     this.message = message;
+    this.isSuccess = isSuccess;
   }
 }

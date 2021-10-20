@@ -1,1 +1,7 @@
-<p [ngClass]="messageService.message ? 'alert alert-success' : ''">{{messageService.message}}</p>
+<ngb-alert #messageAlert *ngIf="messageService.isSuccess && messageService.message" type="success" (closed)="messageService.message = ''">{{
+    messageService.message }}
+</ngb-alert>
+
+<ngb-alert #messageAlert *ngIf="!messageService.isSuccess && messageService.message" type="danger" (closed)="messageService.message = ''">{{
+    messageService.message }}
+</ngb-alert>

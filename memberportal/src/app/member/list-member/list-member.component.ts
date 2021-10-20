@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Member } from '../shared/member.model';
 import { MemberService } from '../shared/member.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-list-member',
@@ -10,10 +11,10 @@ import { MemberService } from '../shared/member.service';
 })
 export class ListMemberComponent implements OnInit {
   public members!: Member[]; // member model
-  private isSuccess: boolean = false;
-  public deleteIndex: number = -1;
+  private isSuccess: boolean = false; //not yet used ,it will be used in displaying success and failure messages
+  public deleteIndex: number = -1; // used in delete member
 
-  constructor(private router: Router, private memberService: MemberService) { }
+  constructor(private router: Router, private memberService: MemberService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     // Get members data
@@ -29,12 +30,7 @@ export class ListMemberComponent implements OnInit {
   public deleteMember(): void {
     this.memberService.delete(this.deleteIndex)
       .subscribe(isSucess => isSucess = this.isSuccess);
-      console.log(this.members);
-  }
-
-  // Set index of item to be deleted
-  public setDeleteIndex(index: any): void {
-    this.deleteIndex = index;
+    console.log(this.members);
   }
 
   //Gets all the members
@@ -43,4 +39,9 @@ export class ListMemberComponent implements OnInit {
       .subscribe(members => this.members = members);
   }
 
+  //opens delete modal
+  public openDeleteModal(content: any, index: number): void {
+    this.deleteIndex = index;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
 }

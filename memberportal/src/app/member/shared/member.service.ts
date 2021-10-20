@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { MessageConstants } from 'src/app/shared/components/message/shared/message.constants';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { Member } from './member.model';
 import { MEMBERS } from './mock-members';
@@ -10,7 +11,8 @@ import { MEMBERS } from './mock-members';
 })
 export class MemberService {
 
-  constructor(private messageService: MessageService) { }
+  private isSuccess: boolean = true;
+  constructor(private messageService: MessageService, private messageConstants: MessageConstants) { }
 
   // get all members
   getAll(): Observable<Member[]> {
@@ -28,44 +30,45 @@ export class MemberService {
 
   // add new member
   create(member: Member): Observable<boolean> {
-    let status: boolean = false;
     MEMBERS.push(member);
-    status = true;
-    this.messageService.add("Member was added");
-    return of(status)
+    this.setAlertMessage(this.messageConstants.CREATESUCCESS, this.isSuccess);
+    return of(this.isSuccess)
       .pipe(catchError(this.errorHandler));
   }
 
   // update member
   update(index: number, member: Member): Observable<boolean> {
-    let status: boolean = false;
     MEMBERS[index].firstName = member.firstName;
     MEMBERS[index].lastName = member.lastName;
     MEMBERS[index].salary = member.salary;
-    status = true;
-    this.messageService.add("Member was updated");
-    return of(status)
+    this.setAlertMessage(this.messageConstants.UPDATESUCCESS, this.isSuccess);
+    return of(this.isSuccess)
       .pipe(catchError(this.errorHandler));
   }
 
-  //delete member
+  // delete member
   delete(index: number): Observable<boolean> {
-    let status: boolean = false;
     MEMBERS.splice(index, 1);
-    status = true;
-    this.messageService.add("Member was deleted");
-    return of(status)
+    this.setAlertMessage(this.messageConstants.DELETESUCCESS, this.isSuccess);
+    return of(this.isSuccess)
       .pipe(catchError(this.errorHandler));
   }
 
-  errorHandler(error: any) {
+  // handles the errors accross all service methods
+  private errorHandler(error: any) {
     let errorMessage = '';
+    this.isSuccess = false;
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-      this.messageService.add('Something went wrong')
+      this.setAlertMessage(this.messageConstants.ERROR_CRUD, this.isSuccess)
     }
     return throwError(errorMessage);
+  }
+
+  // set alert messages to notify user
+  private setAlertMessage(message: string, isSuccess: boolean) {
+    this.messageService.add(message, isSuccess);
   }
 }

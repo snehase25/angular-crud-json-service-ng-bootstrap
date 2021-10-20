@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from '../../services/message.service';
 
 @Component({
@@ -8,9 +9,11 @@ import { MessageService } from '../../services/message.service';
 })
 export class MessageComponent implements OnInit {
 
+  @ViewChild('messageAlert', { static: false }) messageAlert!: NgbAlert;
+
   constructor(public messageService: MessageService) { }
 
   ngOnInit(): void {
+    setTimeout(() => this.messageAlert.close(), 3000);
   }
-
 }
