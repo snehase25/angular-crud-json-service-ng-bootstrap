@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Member } from '../shared/member.model';
 import { MemberService } from '../shared/member.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DeleteModalComponent } from 'src/app/shared/components/delete-modal/delete-modal.component';
+import { DeleteModalComponent } from '../../shared/components/delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-list-member',

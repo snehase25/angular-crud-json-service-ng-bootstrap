@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { MessageConstants } from 'src/app/shared/components/message/shared/message.constants';
-import { MessageService } from 'src/app/shared/services/message.service';
+import { MessageConstants } from '../../shared/components/message/shared/message.constants';
+import { MessageService } from '../../shared/services/message.service';
 import { Member } from './member.model';
 import { MEMBERS } from './mock-members';
 

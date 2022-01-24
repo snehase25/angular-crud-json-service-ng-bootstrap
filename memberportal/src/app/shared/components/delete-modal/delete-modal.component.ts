@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { MemberService } from 'src/app/member/shared/member.service';
+import { MemberService } from '../../../member/shared/member.service';
 
 @Component({
   selector: 'app-delete-modal',
